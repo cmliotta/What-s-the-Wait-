@@ -5,6 +5,7 @@ class CreatePatrons < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :password_hash
+      t.string :cell_phone
 
       t.timestamps
     end
