@@ -6,16 +6,16 @@ Primary devs: gaillechua, michellepark, ruslanid, cmliotta.
 
 Weekday Schedule: 
     9:00 Standup
-    9:10-12:20 Pair Program on daily timeline
+    9:10 Pair Program on daily timeline
     12:20 Standup
-    12:30-2:00 Yoga/Lunch
+    12:30 Yoga/Lunch
     2:00 Pair Program-finish daily timeline
     5:45 Standup
     6:00 Spike or continue if needed
     
 Weekend Schedule:
     1:00 Standup
-    1:10-4:30 Pair Program or Spike
+    1:10 Pair Program or Spike
     4:30 Standup
-    4:40-7:00 Pair Program or Spike
+    4:40 Pair Program or Spike
     7:00 Enjoy Candy and Fries
