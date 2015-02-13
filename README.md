@@ -6,7 +6,7 @@ Primary devs: gaillechua, michellepark, ruslanid, cmliotta.
 
 Weekday Schedule: 
     9:00 Standup
-    9:10-12:30 Pair Program on daily timeline
+    9:10-12:20 Pair Program on daily timeline
     12:20 Standup
     12:30-2:00 Yoga/Lunch
     2:00 Pair Program-finish daily timeline
