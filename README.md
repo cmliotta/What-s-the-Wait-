@@ -1,5 +1,6 @@
-What's the Wait? is a mobile app that allows restaurants to communicate individual wait times to its patrons.
-With a simple download, restaurants can manage their wait lists with ease and patrons can guage their estimated wait directly from their phone.
+What's the Wait? is a mobile app commited to improving everyone's dining experience.
+What's the Wait? allows restaurants to communicate individual party wait times to its patrons.
+With a simple download, restaurants can manage their wait lists with ease and patrons can monitor their estimated wait time directly from their phone.
 
 Primary devs: gaillechua, michellepark, ruslanid, cmliotta.
 
