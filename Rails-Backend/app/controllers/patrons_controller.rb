@@ -2,6 +2,7 @@ class PatronsController < ApplicationController
   def create
     patron = Patron.new(patron_params)
     if patron.save
+      session[:current_patron_id] = patron.id
       render json: patron
     else
       render json: "Please enter your data better"
@@ -25,7 +26,14 @@ class PatronsController < ApplicationController
   end
 
   private
+
   def patron_params
     params.require(:patron).permit(:first_name, :last_name, :email, :password, :cell_phone)
   end
+
+  def current_patron
+    @current_patron ||= session[:current_patron_id] &&
+      Patron.find_by(id: session[:current_patron_id])
+  end
+
 end
