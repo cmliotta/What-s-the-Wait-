@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  include ReservationsHelper
+
   def index
     restaurant = Restaurant.find(params[:restaurant_id])
     reservations = restaurant.reservations
@@ -7,8 +9,8 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    reservation = Reservation.find(params[:id])
-    render json: reservation
+    find_reservation
+    render json: @reservation
   end
 
   def create
@@ -22,20 +24,35 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    reservation = Reservation.find(params[:id])
-    reservation.update(reservation_params)
-    patron = Patron.find(reservation.patron_id)
-    if reservation.save
-      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: reservation.party_size, wait_time: reservation.minutes}
+    find_reservation
+    @reservation.update(reservation_params)
+    patron = Patron.find(@reservation.patron_id)
+    if @reservation.save
+      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: @reservation.party_size, wait_time: @reservation.minutes}
     else
       render json: "Please check your edited entries"
     end
   end
 
   def destroy
-    reservation = Reservation.find(params[:id])
-    reservation.destroy
+    find_reservation
+    @reservation.destroy
   end
+
+  def add_time
+    find_reservation
+    @reservation.minutes += 5
+    @reservation.save
+    render json: @reservation
+  end
+
+  def subtract_time
+    find_reservation
+    @reservation.minutes -= 5
+    @reservation.save
+    render json: @reservation
+  end
+
 
   private
     def reservation_params
