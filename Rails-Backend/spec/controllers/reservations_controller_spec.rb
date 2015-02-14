@@ -52,9 +52,9 @@ describe ReservationsController  do
 
   describe "#add_time" do
     it "adds 5 minutes to " do
-      initial = question.vote_count
-      post :upvote, id: question.id
-      question.reload
+
+      put :upvote, id: question.id
+      @reservation.reload
 
       expect(question.vote_count).to eq(initial+1)
     end
