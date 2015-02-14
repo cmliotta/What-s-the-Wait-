@@ -41,6 +41,7 @@ class ReservationsController < ApplicationController
 
   def add_time
     find_reservation
+    # @reservations = Reservation.where(id > @reservation.id)
     @reservation.minutes += 5
     @reservation.save
     render json: @reservation
