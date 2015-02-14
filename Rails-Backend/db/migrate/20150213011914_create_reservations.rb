@@ -4,7 +4,9 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :restaurant_id
       t.integer :patron_id
       t.integer :party_size
-      t.integer :minutes, default: 10
+      t.integer :minutes
+      t.string :first_name
+      t.string :last_initial
 
       t.timestamps
     end
