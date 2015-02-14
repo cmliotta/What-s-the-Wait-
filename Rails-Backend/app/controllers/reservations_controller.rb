@@ -42,15 +42,13 @@ class ReservationsController < ApplicationController
   def add_time
     find_reservation
     # @reservations = Reservation.where(id > @reservation.id) created at
-    @reservation.minutes += 5
-    @reservation.save
+    @reservation.increment!(:minutes, by = 5)
     render json: @reservation
   end
 
   def subtract_time
     find_reservation
-    @reservation.minutes -= 5
-    @reservation.save
+    @reservation.decrement!(:minutes, by = 5)
     render json: @reservation
   end
 

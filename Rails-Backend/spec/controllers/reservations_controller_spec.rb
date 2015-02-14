@@ -52,22 +52,20 @@ describe ReservationsController  do
 
   describe "#add_time" do
     it "adds 5 minutes to " do
-
-      put :upvote, id: question.id
+      initial_time = @reservation.minutes
+      put :add_time, restaurant_id: @restaurant.id, id: @reservation.id
       @reservation.reload
-
-      expect(question.vote_count).to eq(initial+1)
+      expect(@reservation.minutes).to eq(initial_time + 5)
     end
   end
 
-  # describe "#downvote" do
-  #   it "decements the vote_count by 1 when action is hit" do
-  #     initial = question.vote_count
-  #     post :downvote, id: question.id
-  #     question.reload
-
-  #     expect(question.vote_count).to eq(initial-1)
-  #   end
-  # end
+  describe "#subtract_time" do
+    it "subtracts 5 minutes to " do
+      initial_time = @reservation.minutes
+      put :subtract_time, restaurant_id: @restaurant.id, id: @reservation.id
+      @reservation.reload
+      expect(@reservation.minutes).to eq(initial_time - 5)
+    end
+  end
 
 end
