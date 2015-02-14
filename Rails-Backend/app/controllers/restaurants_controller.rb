@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    restaurant = Restaurant.find(:id)
+    restaurant = Restaurant.find(params[:id])
     restaurant.update(restaurant_params)
     if restaurant.save
       render json: restaurant

@@ -9,8 +9,14 @@ class PatronsController < ApplicationController
     end
   end
 
+  def show
+    patron = Patron.find(params[:id])
+    reservation = patron.reservation
+    render json: reservation
+  end
+
   def update
-    patron = Patron.find(:id)
+    patron = Patron.find(params[:id])
     patron.update(patron_params)
     if patron.save
       render json: patron

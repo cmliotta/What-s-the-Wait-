@@ -1,13 +1,12 @@
 class ReservationsController < ApplicationController
   def index
-    restaurant = Restaurant.find(:restaurant_id)
+    restaurant = Restaurant.find(params[:restaurant_id])
     reservations = restaurant.reservations
     render json: reservations
   end
 
   def show
-    patron = Patron.find_by(:patron_id)
-    reservation = patron.reservation
+    reservation = Reservation.find(params[:id])
     render json: reservation
   end
 
@@ -21,7 +20,7 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    reservation = Reservation.find(:id)
+    reservation = Reservation.find(params[:id])
     reservation.update(reservation_params)
     if reservation.save
       render json: reservation
@@ -31,7 +30,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = Reservation.find(:id)
+    reservation = Reservation.find(params[:id])
     reservation.destroy
   end
 
