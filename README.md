@@ -14,8 +14,8 @@ Weekday Schedule:
     6:00 Spike or continue if needed
     
 Weekend Schedule:
-    1:00 Standup
-    1:10 Pair Program or Spike
+    11:00 Standup
+    11:10 Pair Program or Spike
     4:30 Standup
     4:40 Pair Program or Spike
-    7:00 Enjoy Candy and Fries
+    8:00 Enjoy Candy and Fries
