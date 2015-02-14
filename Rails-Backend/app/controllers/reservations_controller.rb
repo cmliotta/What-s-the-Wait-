@@ -39,11 +39,13 @@ class ReservationsController < ApplicationController
     @reservation.destroy
   end
 
-  def add_time
-    find_reservation
-    # @reservations = Reservation.where(id > @reservation.id) created at
-    @reservation.increment!(:minutes, by = 5)
-    render json: @reservation
+  def add_time_3_or_4
+    @reservations = []
+    @reservations << Reservation.where(party_size: 3)
+    @reservations << Reservation.where(party_size: 4)
+    @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
+
+    render json: @reservations
   end
 
   def subtract_time
