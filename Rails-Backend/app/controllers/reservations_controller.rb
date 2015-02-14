@@ -4,6 +4,7 @@ class ReservationsController < ApplicationController
   def index
     restaurant = Restaurant.find(params[:restaurant_id])
     reservations = restaurant.reservations
+    p reservations
 
     render json: reservations
   end
@@ -14,10 +15,10 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    reservation = Reservation.new(reservation_params)
-    patron = Patron.find(reservation.patron_id)
+    patron = Patron.find_by(cell_phone: params[:cell_phone])
+    reservation = Reservation.new(patron_id: patron.id, restaurant_id: params[:restaurant_id], party_size: params[:party_size], minutes: params[:minutes])
     if reservation.save
-      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: reservation.party_size, wait_time: reservation.minutes}
+      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: reservation.party_size, minutes: reservation.minutes}
     else
       render json: "Please check your entries"
     end
