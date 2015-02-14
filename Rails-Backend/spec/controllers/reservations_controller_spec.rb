@@ -50,21 +50,39 @@ describe ReservationsController  do
     end
   end
 
-  describe "#add_time" do
-    it "adds 5 minutes to " do
+  describe "#add_time_3_or_4" do
+    it "adds 5 minutes to all reservations of 3/4" do
       initial_time = @reservation.minutes
-      put :add_time, restaurant_id: @restaurant.id, id: @reservation.id
+      put :add_time_3_or_4, restaurant_id: @restaurant.id
       @reservation.reload
       expect(@reservation.minutes).to eq(initial_time + 5)
     end
   end
 
-  describe "#subtract_time" do
-    it "subtracts 5 minutes to " do
+  describe "#subtract_time_3_or_4" do
+    it "subtracts 5 minutes to all reservations of 3/4" do
       initial_time = @reservation.minutes
-      put :subtract_time, restaurant_id: @restaurant.id, id: @reservation.id
+      put :subtract_time_3_or_4, restaurant_id: @restaurant.id
       @reservation.reload
       expect(@reservation.minutes).to eq(initial_time - 5)
+    end
+  end
+
+   describe "#add_time_1_or_2" do
+    it "adds 5 minutes to all reservations of 1/2" do
+      initial_time = @reservation.minutes
+      put :add_time_1_or_2, restaurant_id: @restaurant.id
+      @reservation.reload
+      expect(@reservation.minutes).to be(initial_time)
+    end
+  end
+
+  describe "#subtract_time_1_or_2" do
+    it "subtracts 5 minutes to all reservations of 3/4" do
+      initial_time = @reservation.minutes
+      put :subtract_time_1_or_2, restaurant_id: @restaurant.id
+      @reservation.reload
+      expect(@reservation.minutes).to eq(initial_time)
     end
   end
 

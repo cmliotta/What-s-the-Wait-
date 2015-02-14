@@ -39,19 +39,31 @@ class ReservationsController < ApplicationController
     @reservation.destroy
   end
 
-  def add_time
-    find_reservation
-    # @reservations = Reservation.where(id > @reservation.id) created at
-    @reservation.increment!(:minutes, by = 5)
-    render json: @reservation
+  def add_time_3_or_4
+    select_reservations_with_3_or_4_party_size
+    @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
+
+    render json: @reservations
   end
 
-  def subtract_time
-    find_reservation
-    @reservation.decrement!(:minutes, by = 5)
-    render json: @reservation
+  def subtract_time_3_or_4
+    select_reservations_with_3_or_4_party_size
+    @reservations.each { |active_record| active_record.each {|reservation| reservation.decrement!(:minutes, by = 5)} }
+    render json: @reservations
   end
 
+  def add_time_1_or_2
+    select_reservations_with_1_or_2_party_size
+    @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
+
+    render json: @reservations
+  end
+
+  def subtract_time_1_or_2
+    select_reservations_with_1_or_2_party_size
+    @reservations.each { |active_record| active_record.each {|reservation| reservation.decrement!(:minutes, by = 5)} }
+    render json: @reservations
+  end
 
   private
     def reservation_params
