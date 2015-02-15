@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150213011914) do
     t.integer  "minutes"
     t.string   "first_name"
     t.string   "last_initial"
+    t.string   "restaurant_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

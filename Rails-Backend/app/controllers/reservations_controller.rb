@@ -3,10 +3,9 @@ class ReservationsController < ApplicationController
 
   def index
     restaurant = Restaurant.find(params[:restaurant_id])
-    reservations = restaurant.reservations
-    p reservations
+    reservations = restaurant.reservations.order("created_at ASC")
 
-    render json: reservations
+    render json: {restaurant: restaurant,reservations: reservations}
   end
 
   def show
@@ -18,7 +17,7 @@ class ReservationsController < ApplicationController
     patron = Patron.find_by(cell_phone: params[:cell_phone])
     reservation = Reservation.new(patron_id: patron.id, restaurant_id: params[:restaurant_id], party_size: params[:party_size], minutes: params[:minutes])
     if reservation.save
-      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: reservation.party_size, minutes: reservation.minutes}
+      render json: reservation
     else
       render json: "Please check your entries"
     end
@@ -29,7 +28,7 @@ class ReservationsController < ApplicationController
     @reservation.update(reservation_params)
     patron = Patron.find(@reservation.patron_id)
     if @reservation.save
-      render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: @reservation.party_size, wait_time: @reservation.minutes}
+      render json: @reservation
     else
       render json: "Please check your edited entries"
     end
@@ -40,30 +39,16 @@ class ReservationsController < ApplicationController
     @reservation.destroy
   end
 
-  def add_time_3_or_4
-    select_reservations_with_3_or_4_party_size
+  def add_time
+    select_reservations(params[:party_size])
     @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
-
-    render json: @reservations
+    # render json: @reservations
   end
 
-  def subtract_time_3_or_4
-    select_reservations_with_3_or_4_party_size
+  def subtract_time
+    select_reservations(params[:party_size])
     @reservations.each { |active_record| active_record.each {|reservation| reservation.decrement!(:minutes, by = 5)} }
-    render json: @reservations
-  end
-
-  def add_time_1_or_2
-    select_reservations_with_1_or_2_party_size
-    @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
-
-    render json: @reservations
-  end
-
-  def subtract_time_1_or_2
-    select_reservations_with_1_or_2_party_size
-    @reservations.each { |active_record| active_record.each {|reservation| reservation.decrement!(:minutes, by = 5)} }
-    render json: @reservations
+    # render json: @reservations
   end
 
   private
