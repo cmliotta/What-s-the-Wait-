@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     post 'restaurants/:restaurant_id/reservations/add_time', :to => 'reservations#add_time'
 
     post 'restaurants/:restaurant_id/reservations/subtract_time', :to => 'reservations#subtract_time'
+
+    post 'restaurants/:restaurant_id/reservations/countdown/:id', :to => 'reservations#countdown'
 end

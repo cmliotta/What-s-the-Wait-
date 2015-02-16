@@ -12,7 +12,15 @@ class PatronsController < ApplicationController
   def show
     patron = Patron.find(params[:id])
     reservation = patron.reservation
-    render json: {first_name: patron.first_name, last_initial: patron.last_name[0], party_size: reservation.party_size, wait_time: reservation.minutes}
+    restaurant = Restaurant.find(reservation.restaurant_id)
+    if reservation.party_size <= 2
+      parties_ahead = restaurant.reservations.where("party_size = ? AND minutes < ?", 1, reservation.minutes).count
+      parties_ahead += restaurant.reservations.where("party_size = ? AND minutes < ?", 2, reservation.minutes).count
+    elsif reservation.party_size > 2
+      parties_ahead = restaurant.reservations.where("party_size = ? AND minutes < ?", 3, reservation.minutes).count
+      parties_ahead += restaurant.reservations.where("party_size = ? AND minutes < ?", 4, reservation.minutes).count
+    end
+    render json: {waitInfo: reservation, restaurant: restaurant, parties_ahead: parties_ahead}
   end
 
   def update
