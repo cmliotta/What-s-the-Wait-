@@ -42,10 +42,13 @@ GEM
       devise (~> 3.3)
       rails (~> 4.1)
     diff-lcs (1.2.5)
+    dotenv (1.0.2)
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.7.0)
     json (1.8.2)
+    jwt (0.1.11)
+      multi_json (>= 1.5)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
@@ -122,6 +125,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   database_cleaner
   devise_token_auth
+  dotenv
+  jwt
   pg
   rack-cors
   rails (= 4.1.6)

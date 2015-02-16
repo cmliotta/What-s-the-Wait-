@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :patrons
 
     post 'restaurants/:restaurant_id/reservations/add_time', :to => 'reservations#add_time'
-
     post 'restaurants/:restaurant_id/reservations/subtract_time', :to => 'reservations#subtract_time'
+
+    post 'restaurants/login' => 'restaurants#signin'
+    post 'patrons/login' => 'patrons#signin'
+
+
 end
