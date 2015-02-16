@@ -16,10 +16,10 @@ class ReservationsController < ApplicationController
   def create
     patron = Patron.find_by(cell_phone: params[:cell_phone])
     reservation = Reservation.new(patron_id: patron.id, restaurant_id: params[:restaurant_id], party_size: params[:party_size], minutes: params[:minutes])
-    if reservation.save
+    if patron && reservation.save
       render json: reservation
     else
-      render json: "Please check your entries"
+      render json: [500, {'Content-Type' => 'application/json'}, [{errors: "The phone number does not match any user"}]]
     end
   end
 
@@ -40,15 +40,31 @@ class ReservationsController < ApplicationController
   end
 
   def add_time
-    select_reservations(params[:party_size])
-    @reservations.each { |active_record| active_record.each {|reservation| reservation.increment!(:minutes, by = 5)} }
+    select_reservations(party_size: params[:party_size])
+    @reservations.each do |active_record| active_record.each do |reservation|
+        reservation.increment!(:minutes, by = 5)
+      end
+    end
     # render json: @reservations
   end
 
   def subtract_time
-    select_reservations(params[:party_size])
-    @reservations.each { |active_record| active_record.each {|reservation| reservation.decrement!(:minutes, by = 5)} }
+    select_reservations(party_size: params[:party_size])
+    @reservations.each do |active_record|
+      active_record.each do |reservation|
+        if reservation.minutes > 4
+          reservation.decrement!(:minutes, by = 5)
+        end
+      end
+    end
     # render json: @reservations
+  end
+
+  def countdown
+    find_reservation
+    if @reservation.minutes > 0
+      @reservation.decrement!(:minutes)
+    end
   end
 
   private
