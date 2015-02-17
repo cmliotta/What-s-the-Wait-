@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     post 'restaurants/login' => 'restaurants#signin'
     post 'patrons/login' => 'patrons#signin'
 
-
-
     post 'restaurants/:restaurant_id/reservations/countdown/:id', :to => 'reservations#countdown'
+
+    post 'restaurants/:restaurant_id/reservations/:id/send_alert', :to => 'reservations#send_alert'
 
 end
