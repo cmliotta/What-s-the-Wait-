@@ -72,6 +72,7 @@ class ReservationsController < ApplicationController
   def send_alert
     find_reservation
     if request.post?
+      p @reservation
       @reservation.table_ready = true
       @reservation.save
     end
