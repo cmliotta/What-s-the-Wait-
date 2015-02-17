@@ -77,7 +77,7 @@ class ReservationsController < ApplicationController
       @reservation.save
     end
     if @reservation.table_ready == "t"
-      render json: {message: "You're Table is ready"}
+      render json: {message: "ready"}
     else
       render json: {message: "nothing"}
     end
