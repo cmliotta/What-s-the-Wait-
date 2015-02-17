@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150213011914) do
     t.string   "first_name"
     t.string   "last_initial"
     t.string   "table_ready",   default: "f"
+    t.string   "cancel_table",  default: "f"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

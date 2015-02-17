@@ -18,4 +18,8 @@ Rails.application.routes.draw do
     post 'restaurants/:restaurant_id/reservations/:id/send_alert', :to => 'reservations#send_alert'
 
     get 'restaurants/:restaurant_id/reservations/:id/send_alert', :to => 'reservations#send_alert'
+
+    post 'restaurants/:restaurant_id/cancellation', :to => 'reservations#cancellation'
+
+    get 'restaurants/:restaurant_id/check_cancellations', :to => 'reservations#check_cancellations'
 end

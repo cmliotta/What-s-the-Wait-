@@ -72,7 +72,6 @@ class ReservationsController < ApplicationController
   def send_alert
     find_reservation
     if request.post?
-      p @reservation
       @reservation.table_ready = true
       @reservation.save
     end
@@ -80,6 +79,19 @@ class ReservationsController < ApplicationController
       render json: {message: "ready"}
     else
       render json: {message: "nothing"}
+    end
+  end
+
+  def cancellation
+    find_reservation
+    @reservation.cancel_table = true
+    @reservation.save
+  end
+
+  def check_cancellations
+    @reservations = Reservation.where(cancel_table: "t")
+    @reservations.each do |reservation|
+      render json: {message: "#{reservation.first_name} #{reservation.last_initial} would like to cancel"}
     end
   end
 
