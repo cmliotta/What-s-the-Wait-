@@ -30,7 +30,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       render json: @reservation
     else
-      render json: "Please check your edited entries"
+      render json: {error: "Please check your edited entries"}
     end
   end
 
@@ -46,6 +46,7 @@ class ReservationsController < ApplicationController
       end
     end
     # render json: @reservations
+    p @reservations
   end
 
   def subtract_time
@@ -58,12 +59,26 @@ class ReservationsController < ApplicationController
       end
     end
     # render json: @reservations
+    p @reservations
   end
 
   def countdown
     find_reservation
     if @reservation.minutes > 0
       @reservation.decrement!(:minutes)
+    end
+  end
+
+  def send_alert
+    find_reservation
+    if request.post?
+      @reservation.table_ready = true
+      @reservation.save
+    end
+    if @reservation.table_ready == "t"
+      render json: {message: "You're Table is ready"}
+    else
+      render json: {message: "nothing"}
     end
   end
 

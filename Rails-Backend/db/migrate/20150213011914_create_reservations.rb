@@ -7,6 +7,7 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :minutes
       t.string :first_name
       t.string :last_initial
+      t.string :table_ready, default: false
 
       t.timestamps
     end
