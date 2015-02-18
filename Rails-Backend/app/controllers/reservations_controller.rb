@@ -45,8 +45,6 @@ class ReservationsController < ApplicationController
         reservation.increment!(:minutes, by = 5)
       end
     end
-    # render json: @reservations
-    p @reservations
   end
 
   def subtract_time
@@ -58,8 +56,6 @@ class ReservationsController < ApplicationController
         end
       end
     end
-    # render json: @reservations
-    p @reservations
   end
 
   def countdown
