@@ -1,21 +1,8 @@
 What's the Wait? is a mobile app commited to improving everyone's dining experience.
-What's the Wait? allows restaurants to communicate individual party wait times to its patrons.
+What's the Wait? allows restaurants to communicate individual party wait times to its patrons while easily tracking its complete wait list.
+
 With a simple download, restaurants can manage their wait lists with ease and patrons can monitor their estimated wait time directly from their phone.
 
-Primary devs: gaillechua, michellepark, ruslanid, cmliotta.
+This was our final project for Dev Bootcamp, the team consisted of: gaillechua, michellepark, ruslanid, cmliotta.
 
-Weekday Schedule: 
-    9:00 Standup
-    9:10 Pair Program on daily timeline
-    12:20 Standup
-    12:30 Yoga/Lunch
-    2:00 Pair Program-finish daily timeline
-    5:45 Standup
-    6:00 Spike or continue if needed
-    
-Weekend Schedule:
-    11:00 Standup
-    11:10 Pair Program or Spike
-    4:30 Standup
-    4:40 Pair Program or Spike
-    8:00 Enjoy Candy and Fries
+In less than one week, we learned new technologies and built a decoupled app with a Rails backend and Angular & Ionic frontend. We are continuing to improve the app to make it production quality and plan to release it for iPhone and Android soon.
